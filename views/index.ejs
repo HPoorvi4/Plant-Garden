@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Garden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #e1f5fe;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: #dcedc8;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #33691e;
+        }
+
+        .sidebar p {
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: #558b2f;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            margin-top: 50px;
+            padding: 0;
+        }
+
+        .menu-btn {
+            display: block;
+            /* makes <a> fill width like button */
+            background: #91bfe5;
+            padding: 12px 20px;
+            text-align: left;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            color: #333;
+            border: 4px solid transparent;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .menu-btn:hover {
+            background-color: #abf2ab;
+        }
+
+        .menu-btn.active {
+            background-color: #65bf65;
+            font-weight: bold;
+        }
+
+        .stats {
+            margin-top: 160px;
+            font-size: 18px;
+        }
+
+        .main {
+            flex: 1;
+            padding: 30px;
+            background: linear-gradient(to top, #aed581 60%, #bbdefb 40%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .toolbar button {
+            margin-left: 10px;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .plant-btn {
+            background-color: #66bb6a;
+            padding-bottom: 30px;
+        }
+
+        .water-btn {
+            background-color: #42a5f5;
+        }
+
+        .fertilize-btn {
+            background-color: #ffb300;
+        }
+
+        .garden-board {
+            background-color: #d18f5a;
+            border: 5px solid #6d4c41;
+            padding: 15px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(5, 150px);
+            gap: 10px;
+
+            background-size: cover;
+        }
+
+        .plant-slot {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .plant-slot img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Modal backdrop */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Form elements */
+        .modal-content label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .modal-content select {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 1rem;
+        }
+
+        /* Submit button */
+        .modal-content button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .modal-content button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div class="sidebar">
+
+        <h2>My Garden</h2>
+        <p>Grow your virtual plants</p>
+
+        <div class="menu">
+            <a href="/" class="menu-btn active">Garden</a>
+            <a href="/plants" class="menu-btn">My Plants</a>
+            <a href="/harvested" class="menu-btn">Harvested</a>
+            <a href="/bouquets" class="menu-btn">Bouquets</a>
+            <a href="/shop" class="menu-btn">Shop</a>
+        </div>
+
+
+
+        <div class="stats">
+            <p>🌕 Coins: <strong>
+                    <%= coins %>
+                </strong></p>
+            <p>🌱 Level: <strong>
+                    <%= level %>
+                </strong></p>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="toolbar">
+            <button class="plant-btn">+ Plant</button>
+            <button class="water-btn">💧 Water</button>
+            <button class="fertilize-btn">🌿 Fertilize</button>
+        </div>
+
+        <div class="garden-board" id="garden-board">
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+            <div class="plant-slot"></div>
+        </div>
+    </div>
+
+    <div id="plantModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Plant a New Seed 🌱</h2>
+            <form id="plantForm">
+                <label for="plantType">Choose a plant:</label>
+                <select id="plantType" name="plantType" required>
+                    <option value="0">Rose</option>
+                    <option value="1">Tulip</option>
+                    <option value="2">Daisy</option>
+                    <option value="3">Sunflower</option>
+                    <option value="4">Cactus</option>
+                </select>
+                <br><br>
+                <button type="submit">🌱 Plant This</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src=".\js\main.js"></script>
+
+</body>
+
+</html>
