@@ -1,0 +1,12 @@
+{
+  "plants": [
+    {
+      "id": 1717930920000,
+      "type": "rose",
+      "waterCount": 2,
+      "plantedDate": "2025-06-09"
+    }
+  ],
+  "harvestedFlowers": [],
+  "bouquets": []
+}
