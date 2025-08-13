@@ -1,0 +1,180 @@
+.bouquets-container {
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.bouquets-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.bouquets-header h1 {
+  font-size: 2.5rem;
+}
+
+.bouquets-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.bouquets-content section {
+  margin-bottom: 40px;
+}
+
+.flowers-grid,
+.bouquets-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.flower-card,
+.bouquet-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  width: 150px;
+}
+
+.flower-icon {
+  font-size: 2.5rem;
+}
+
+.flower-card h3,
+.bouquet-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+}
+
+.flower-card p,
+.bouquet-card p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.add-flower-btn,
+.remove-btn,
+button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.3s;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.add-flower-btn:hover,
+.remove-btn:hover,
+.save-btn:hover,
+.clear-btn:hover {
+  background-color: #45a049;
+}
+
+.bouquet-builder {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.builder-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.current-bouquet {
+  flex: 1;
+  min-width: 250px;
+}
+
+.bouquet-flower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.wrapper-selection {
+  flex: 1;
+  min-width: 250px;
+}
+
+.wrapper-option {
+  margin: 5px;
+  padding: 10px;
+  background: #eee;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.wrapper-option.selected {
+  border-color: #4caf50;
+  background-color: #d4edda;
+}
+
+.bouquet-summary {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px;
+}
+
+.bouquet-summary p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.save-btn,
+.clear-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.created-bouquets .bouquet-card {
+  width: 180px;
+  position: relative;
+}
+
+.bouquet-wrapper {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.bouquet-flowers-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.bouquet-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.empty-bouquet,
+.no-bouquets {
+  font-style: italic;
+  color: #888;
+}

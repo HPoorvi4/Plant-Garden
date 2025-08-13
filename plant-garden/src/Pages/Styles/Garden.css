@@ -1,0 +1,243 @@
+/* Garden.css */
+.garden-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use min-height instead of height for better responsiveness */
+  padding: 1rem;
+  position: relative; /* Add position relative for pseudo-element */
+  overflow: hidden;
+}
+
+/* Method 1: Using pseudo-element for opacity (recommended) */
+.garden-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../../../public/Garden.jpg") center/cover no-repeat;
+  opacity: 0.8;
+  z-index: -1; /* Put background behind content */
+}
+
+/* Method 2: Alternative using background with overlay */
+.garden-container-alt {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(rgba(9, 44, 33, 0.2), rgba(78, 106, 73, 0.2)),
+    url("/Garden.jpg") center/cover no-repeat;
+  background-attachment: fixed; /* Optional: creates parallax effect */
+  overflow: hidden;
+}
+
+/* For better mobile responsiveness */
+@media (max-width: 768px) {
+  .garden-container,
+  .garden-container-alt {
+    background-attachment: scroll; /* Better performance on mobile */
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center center;
+  }
+  .garden-grid {
+    width: 95%;
+    margin-top: 20px; /* Reduce top margin on mobile */
+    padding: 1rem;
+    max-height: 300px;
+    gap: 0.25rem;
+  }
+}
+/* Ensure content stays above background */
+.garden-container > * {
+  position: relative;
+  z-index: 1;
+}
+.garden-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.garden-header h1 {
+  color: #2d5016;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.coins-display {
+  background: #607758;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: #fff;
+  border: 2px solid #372513;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #111214;
+  font-weight: bold;
+}
+
+.action-btn:hover {
+  background: #e7c4e7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 80, 22, 0.2);
+}
+
+.action-btn.active {
+  background: #e0bce2;
+  color: white;
+  box-shadow: 0 4px 8px rgba(46, 80, 22, 0.3);
+}
+
+/* Seed Dropdown */
+.seed-dropdown {
+  background: white;
+  border: 2px solid #7e9477;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seed-dropdown h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2d5016;
+}
+
+.seed-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.seed-option {
+  background: #f0f8f0;
+  border: 1px solid #7e9477;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #2d5016;
+}
+
+.seed-option:hover:not(.disabled) {
+  background: #e8f5e8;
+  transform: scale(1.05);
+}
+
+.seed-option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+/* Current Action Display */
+.current-action {
+  background: var(--overlay);
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #856404;
+  font-weight: bold;
+}
+
+/* Garden Grid */
+.garden-grid {
+  background: var(--overlay);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  height: 75%;
+  margin: 0 auto 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.5rem;
+  max-height: 400px;
+  aspect-ratio: 1;
+  margin: 100px auto 1rem auto;
+
+  box-sizing: border-box;
+}
+
+/* Instructions */
+.instructions {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.instructions p {
+  margin: 0;
+  color: #2d5016;
+  font-weight: bold;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .garden-container {
+    padding: 0.5rem;
+  }
+
+  .garden-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .action-buttons {
+    gap: 0.5rem;
+  }
+
+  .action-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .garden-grid {
+    gap: 0.25rem;
+    max-height: 300px;
+  }
+
+  .garden-slot {
+    min-height: 60px;
+  }
+
+  .slot-content {
+    font-size: 1.5rem;
+  }
+
+  .seed-options {
+    gap: 0.25rem;
+  }
+
+  .seed-option {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

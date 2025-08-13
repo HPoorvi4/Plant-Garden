@@ -1,0 +1,232 @@
+/* MyPlants.css */
+.my-plants-container {
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.my-plants-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../../../public/Garden.jpg") center/cover no-repeat;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+.my-plants-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.my-plants-header h1 {
+  color: #2d5016;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.my-plants-header p {
+  color: #556b2f;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.plants-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.growing-section,
+.harvested-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.growing-section h2,
+.harvested-section h2 {
+  color: #2d5016;
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+  border-bottom: 2px solid #7e9477;
+  padding-bottom: 0.5rem;
+}
+
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.plant-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.plant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.plant-card.growing {
+  border-color: #7e9477;
+}
+
+.plant-card.harvested {
+  border-color: #ff6b6b;
+}
+
+.plant-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.plant-info {
+  text-align: center;
+}
+
+.plant-info h3 {
+  color: #2d5016;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.plant-stage {
+  color: #7e9477;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+.plant-location {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+.plant-time {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+.flower-count {
+  color: #2d5016;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+.sell-price {
+  color: #7e9477;
+  margin: 0.25rem 0;
+}
+
+.total-value {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+.plant-progress {
+  margin-top: 0.5rem;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #7e9477, #a8d8a8);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.plant-actions {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.use-bouquet-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.use-bouquet-btn:hover {
+  background: #e55a5a;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+.plants-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid #7e9477;
+}
+
+.summary-card h3 {
+  color: #2d5016;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.summary-number {
+  color: #7e9477;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .my-plants-container {
+    padding: 1rem;
+  }
+
+  .my-plants-header h1 {
+    font-size: 2rem;
+  }
+
+  .plants-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plants-summary {
+    grid-template-columns: 1fr;
+  }
+}
