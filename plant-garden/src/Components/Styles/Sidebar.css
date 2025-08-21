@@ -76,6 +76,7 @@
   top: 0;
   left: 0;
   width: var(--sidebar-w);
+  height: 100vh;
   background: url("../../../public/sidebar-bg.jpg") center/cover no-repeat;
   opacity: 0.8;
   display: flex;

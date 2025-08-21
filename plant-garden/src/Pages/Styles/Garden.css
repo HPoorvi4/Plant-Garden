@@ -28,7 +28,7 @@
   min-height: 100vh;
   padding: 1rem;
   background: linear-gradient(rgba(9, 44, 33, 0.2), rgba(78, 106, 73, 0.2)),
-    url("/Garden.jpg") center/cover no-repeat;
+    url("../../../public/Garden.jpg") center/cover no-repeat;
   background-attachment: fixed; /* Optional: creates parallax effect */
   overflow: hidden;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGame } from "../App";
+
 import "./Styles/Login.css";
 
 export default function Login() {
@@ -14,7 +14,6 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
-  const { login } = useGame();
 
   // Load remembered credentials
   useEffect(() => {
@@ -102,7 +101,6 @@ export default function Login() {
           localStorage.setItem("rememberedEmail", email);
         }
 
-        login(newUser);
         showSuccess("Account created successfully! Welcome to Virtual Garden!");
         navigate("/garden");
       } else {
@@ -121,7 +119,6 @@ export default function Login() {
             localStorage.removeItem("rememberedEmail");
           }
 
-          login(user);
           showSuccess("Welcome back to your garden!");
           navigate("/garden");
         } else {

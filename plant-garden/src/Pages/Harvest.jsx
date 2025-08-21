@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Slot from "./Components/Slot";
+import Slot from "../components/Slot";
 import "./Styles/Garden.css";
 
 const SEED_TYPES = [
